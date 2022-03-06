@@ -11,26 +11,13 @@ import javax.swing.JPanel;
 
 
 public class WelcomeScreen extends JPanel{
-	JLabel title;
+        JLabel title;
 	JButton go;
 	JButton quit;
 	
 	MainWindow mw;
 	
-	public void setTitle(String t){
-		title.setText(t);
-	}
-	
-	public void quitButtonActionListener(){
-		if(JOptionPane.showConfirmDialog(this, "Are you sure?") == JOptionPane.OK_OPTION)
-	        System.exit(0);
-	}
-	
-	public void goButtonActionListener(){
-		mw.showCard("Two");
-	}
- 
-	public WelcomeScreen(MainWindow mw){
+        public WelcomeScreen(MainWindow mw){
 		this.mw = mw;
 		
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -42,20 +29,30 @@ public class WelcomeScreen extends JPanel{
 		go = new JButton("New Game");
 		quit = new JButton("Quit");	
 		
-		go.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				goButtonActionListener();
-			}
-		});
+		go.addActionListener(addMe);
 		
-		quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				 quitButtonActionListener();
-			}
-		});
+		quit.addActionListener(addMe);
 		
 		add(go);
 		add(quit);
 	}
-
+        
+	public void setTitle(String t){
+		title.setText(t);
+	}
+        
+        final ActionListener addMe = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				goButtonActionListener();
+			}
+		};
+	
+	public void quitButtonActionListener(){
+		if(JOptionPane.showConfirmDialog(this, "Are you sure?") == JOptionPane.OK_OPTION)
+	        System.exit(0);
+	}
+	
+	public void goButtonActionListener(){
+		mw.showCard("Two");
+	}
 }

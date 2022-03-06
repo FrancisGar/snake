@@ -20,28 +20,6 @@ public class MainWindow extends JFrame{
 	CustomizeBoardScreen s3;
 	BoardScreen s4;
 	
-	public void showCard(String cardName){
-		cl.show(cards, cardName);
-	}
-	
-	public void resetAll(){
-		s1 = new WelcomeScreen(this);
-		s2 = new PlayerSelectScreen(this);
-		s3 = new CustomizeBoardScreen(this);
-		s4 = new BoardScreen(this);
-		
-		cards.add(s1,"One");
-		cards.add(s2,"Two");
-		cards.add(s3, "Three");
-		cards.add(s4, "Four");
-	}
-	
-	//maintaining board info
-	public void setBoard(){
-		s4 = new BoardScreen(this);
-		cards.add(s4, "Four");
-	}
-	
 	public MainWindow(){
 		
 		setVisible(true);
@@ -98,5 +76,26 @@ public class MainWindow extends JFrame{
 		cl.show(cards, "One");
 		showCard("One");	
 	}
-
+        
+        //maintaining board info
+	public void setBoard(){
+		s4 = new BoardScreen(this);
+		cards.add(s4, "Four");
+	}
+        
+	public void showCard(String cardName){
+		cl.show(cards, cardName);
+	}
+	
+	public void resetAll(){
+		s1 = new WelcomeScreen(this);
+		s2 = new PlayerSelectScreen(this);
+		s3 = new CustomizeBoardScreen(this);
+		s4 = new BoardScreen(this);
+		
+		cards.add(s1,"One");
+		cards.add(s2,"Two");
+		cards.add(s3, "Three");
+		cards.add(s4, "Four");
+	}
 }

@@ -41,23 +41,48 @@ public class PlayerSelectScreen extends JPanel {
 	}
 	
 	public PlayerSelectScreen(MainWindow mw){
-		this.mw = mw;
+                //variables extraídas
+		BoxLayout lay = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+                JLabel select = new JLabel("Select Players: ");
+                JLabel defaultt = new JLabel("Default: 1Player");
+                JRadioButton o1 = new JRadioButton("1 Player(Default)");
+                JRadioButton o2 = new JRadioButton("2 Players");
+                JRadioButton o3 = new JRadioButton("3 Players");
+                ActionListener addThis = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				playerOptions();
+			}
+		};
+                JButton gogo = new JButton("Customize Board");
+                JButton quitquit = new JButton("Back");
+                ActionListener addThat = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				goButtonActionListener();
+			}
+		};
+                ActionListener addThose = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				 quitButtonActionListener();
+			}
+		};
+            
+                this.mw = mw;
+                
+		setLayout(lay);
 		
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		
-		JLabel mess = new JLabel("Select Players: ");
+		JLabel mess = select;
 		add(mess);
 		
-		JLabel uc = new JLabel("Default: 1Player");
+		JLabel uc = defaultt;
 		add(uc);
 		
 		//set up radio buttons
 		
-		opt1 = new JRadioButton("1 Player(Default)");
+		opt1 = o1;
 		opt1.setSelected(true);
 		
-		opt2 = new JRadioButton("2 Players");
-		opt3 = new JRadioButton("3 Players");
+		opt2 = o2;
+		opt3 = o3;
 		
 		ButtonGroup grp = new ButtonGroup();
 		grp.add(opt1);
@@ -68,37 +93,16 @@ public class PlayerSelectScreen extends JPanel {
 		add(opt2);
 		add(opt3);
 
-		opt1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				playerOptions();
-			}
-		});
-		opt2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				playerOptions();
-			}
-		});
+		opt1.addActionListener(addThis);
+		opt2.addActionListener(addThis);
+		opt3.addActionListener(addThis);
 		
-		opt3.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				playerOptions();
-			}
-		});
+		go = gogo;
+		quit = quitquit;	
 		
-		go = new JButton("Customize Board");
-		quit = new JButton("Back");	
+		go.addActionListener(addThat);
 		
-		go.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				goButtonActionListener();
-			}
-		});
-		
-		quit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				 quitButtonActionListener();
-			}
-		});
+		quit.addActionListener(addThose);
 		
 		add(go);
 		add(quit);
